@@ -1,4 +1,4 @@
-namespace MyFittPeak.Api.Models;
+namespace MyFittPeak.Domain.Entities;
 
 public class EventParticipant
 {
@@ -14,3 +14,4 @@ public class EventParticipant
 
     public string PaymentStatus { get; set; } = "Pending";
 }
+

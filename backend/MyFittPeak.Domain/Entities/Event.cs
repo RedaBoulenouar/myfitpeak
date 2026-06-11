@@ -1,4 +1,4 @@
-namespace MyFittPeak.Api.Models;
+namespace MyFittPeak.Domain.Entities;
 
 public class Event
 {
@@ -20,3 +20,4 @@ public class Event
 
     public ICollection<EventParticipant> Participants { get; set; } = new List<EventParticipant>();
 }
+

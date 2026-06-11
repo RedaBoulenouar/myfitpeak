@@ -4,10 +4,10 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using MyFittPeak.Api.Constants;
 using MyFittPeak.Api.Contracts.Auth;
-using MyFittPeak.Api.Data;
-using MyFittPeak.Api.Models;
+using MyFittPeak.Domain.Constants;
+using MyFittPeak.Domain.Entities;
+using MyFittPeak.Domain.Repositories;
 
 namespace MyFittPeak.Api.Controllers;
 
@@ -15,17 +15,20 @@ namespace MyFittPeak.Api.Controllers;
 [Route("api/auth")]
 public class AuthController : ControllerBase
 {
-    private readonly ApplicationDbContext _dbContext;
     private readonly IConfiguration _configuration;
+    private readonly IRepository<CoachProfile> _coachProfiles;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly UserManager<ApplicationUser> _userManager;
 
     public AuthController(
-        ApplicationDbContext dbContext,
         IConfiguration configuration,
+        IRepository<CoachProfile> coachProfiles,
+        IUnitOfWork unitOfWork,
         UserManager<ApplicationUser> userManager)
     {
-        _dbContext = dbContext;
         _configuration = configuration;
+        _coachProfiles = coachProfiles;
+        _unitOfWork = unitOfWork;
         _userManager = userManager;
     }
 
@@ -56,7 +59,7 @@ public class AuthController : ControllerBase
 
         if (role == AppRoles.Coach)
         {
-            _dbContext.CoachProfiles.Add(new CoachProfile
+            await _coachProfiles.AddAsync(new CoachProfile
             {
                 UserId = user.Id,
                 Bio = string.Empty,
@@ -64,7 +67,7 @@ public class AuthController : ControllerBase
                 HourlyRate = 0
             });
 
-            await _dbContext.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
         }
 
         return Ok(CreateToken(user, role));

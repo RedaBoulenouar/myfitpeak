@@ -1,4 +1,4 @@
-namespace MyFittPeak.Api.Models;
+namespace MyFittPeak.Domain.Entities;
 
 public class CoachProfile
 {
@@ -22,3 +22,4 @@ public class CoachProfile
 
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }
+

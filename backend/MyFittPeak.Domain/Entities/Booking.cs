@@ -1,4 +1,4 @@
-namespace MyFittPeak.Api.Models;
+namespace MyFittPeak.Domain.Entities;
 
 public class Booking
 {
@@ -20,3 +20,4 @@ public class Booking
 
     public string BookingStatus { get; set; } = "Requested";
 }
+

@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyFittPeak.Api.Constants;
-using MyFittPeak.Api.Data;
+using MyFittPeak.Domain.Constants;
+using MyFittPeak.Domain.Repositories;
 
 namespace MyFittPeak.Api.Controllers;
 
@@ -10,28 +9,23 @@ namespace MyFittPeak.Api.Controllers;
 [Route("api/coaches")]
 public class CoachProfilesController : ControllerBase
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly ICoachProfileRepository _coachProfileRepository;
 
-    public CoachProfilesController(ApplicationDbContext dbContext)
+    public CoachProfilesController(ICoachProfileRepository coachProfileRepository)
     {
-        _dbContext = dbContext;
+        _coachProfileRepository = coachProfileRepository;
     }
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<IActionResult> Search([FromQuery] string? sport, [FromQuery] int? minRating)
+    public async Task<IActionResult> Search(
+        [FromQuery] string? sport,
+        [FromQuery] int? minRating,
+        CancellationToken cancellationToken)
     {
-        var coaches = _dbContext.CoachProfiles
-            .Include(coach => coach.User)
-            .Include(coach => coach.Reviews)
-            .AsQueryable();
+        var coaches = await _coachProfileRepository.SearchAsync(sport, minRating, cancellationToken);
 
-        if (!string.IsNullOrWhiteSpace(sport))
-        {
-            coaches = coaches.Where(coach => coach.SportsSpecialties.Contains(sport));
-        }
-
-        var results = await coaches
+        var results = coaches
             .Select(coach => new
             {
                 coach.Id,
@@ -41,8 +35,7 @@ public class CoachProfilesController : ControllerBase
                 coach.HourlyRate,
                 AverageRating = coach.Reviews.Any() ? coach.Reviews.Average(review => review.Rating) : 0
             })
-            .Where(coach => !minRating.HasValue || coach.AverageRating >= minRating.Value)
-            .ToListAsync();
+            .ToList();
 
         return Ok(results);
     }

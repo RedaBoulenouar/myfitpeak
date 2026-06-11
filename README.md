@@ -13,11 +13,17 @@ Plateforme web de mise en relation entre coachs sportifs et clients.
 
 ```text
 backend/
-  MyFittPeak.Api/
+  MyFittPeak.Domain/
     Constants/
-    Controllers/
+    Entities/
+    Repositories/
+  MyFittPeak.Infrastructure/
     Data/
-    Models/
+    DependencyInjection/
+    Repositories/
+  MyFittPeak.Api/
+    Controllers/
+    Contracts/
 frontend/
   src/
     api/
@@ -34,6 +40,12 @@ dotnet restore .\backend\MyFittPeak.Api\MyFittPeak.Api.csproj
 dotnet ef database update --project .\backend\MyFittPeak.Api
 dotnet run --project .\backend\MyFittPeak.Api
 ```
+
+## Architecture backend
+
+- `MyFittPeak.Api`: controllers, contrats HTTP, JWT, CORS, Swagger.
+- `MyFittPeak.Domain`: entites metier, roles, interfaces de repositories.
+- `MyFittPeak.Infrastructure`: `ApplicationDbContext`, configuration EF Core/Identity, implementations des repositories.
 
 ```powershell
 cd frontend

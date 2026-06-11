@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace MyFittPeak.Api.Models;
+namespace MyFittPeak.Domain.Entities;
 
 public class ApplicationUser : IdentityUser
 {
@@ -8,7 +8,7 @@ public class ApplicationUser : IdentityUser
 
     public string LastName { get; set; } = string.Empty;
 
-    public string Role { get; set; } = Constants.AppRoles.Client;
+    public string Role { get; set; } = MyFittPeak.Domain.Constants.AppRoles.Client;
 
     public CoachProfile? CoachProfile { get; set; }
 
@@ -18,3 +18,4 @@ public class ApplicationUser : IdentityUser
 
     public ICollection<EventParticipant> EventParticipations { get; set; } = new List<EventParticipant>();
 }
+

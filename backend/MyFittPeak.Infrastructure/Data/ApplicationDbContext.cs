@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MyFittPeak.Api.Models;
+using MyFittPeak.Domain.Entities;
 
-namespace MyFittPeak.Api.Data;
+namespace MyFittPeak.Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
@@ -85,3 +85,4 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .ToTable(table => table.HasCheckConstraint("CK_Reviews_Rating", "[Rating] BETWEEN 1 AND 5"));
     }
 }
+

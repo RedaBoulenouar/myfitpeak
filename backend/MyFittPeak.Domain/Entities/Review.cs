@@ -1,4 +1,4 @@
-namespace MyFittPeak.Api.Models;
+namespace MyFittPeak.Domain.Entities;
 
 public class Review
 {
@@ -18,3 +18,4 @@ public class Review
 
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 }
+

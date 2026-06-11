@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/backend/">
     <Project Path="backend/MyFittPeak.Api/MyFittPeak.Api.csproj" />
+    <Project Path="backend/MyFittPeak.Domain/MyFittPeak.Domain.csproj" />
+    <Project Path="backend/MyFittPeak.Infrastructure/MyFittPeak.Infrastructure.csproj" />
   </Folder>
 </Solution>
