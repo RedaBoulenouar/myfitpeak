@@ -1,0 +1,11 @@
+bin/
+obj/
+dist/
+node_modules/
+*.tsbuildinfo
+.vs/
+.vscode/
+*.user
+*.suo
+appsettings.Development.json
+frontend/.env
