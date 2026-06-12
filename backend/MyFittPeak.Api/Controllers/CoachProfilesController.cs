@@ -1,5 +1,7 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MyFittPeak.Api.Contracts.Coaches;
 using MyFittPeak.Domain.Constants;
 using MyFittPeak.Domain.Repositories;
 
@@ -42,8 +44,32 @@ public class CoachProfilesController : ControllerBase
 
     [HttpPut("me")]
     [Authorize(Roles = AppRoles.Coach)]
-    public IActionResult UpdateMyProfile()
+    public async Task<IActionResult> UpdateMyProfile(
+        UpdateCoachProfileRequest request,
+        IUnitOfWork unitOfWork,
+        CancellationToken cancellationToken)
     {
-        return Accepted(new { message = "Coach profile update endpoint placeholder." });
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
+        var profile = await _coachProfileRepository.GetByUserIdAsync(userId, cancellationToken);
+
+        if (profile is null)
+        {
+            return NotFound();
+        }
+
+        profile.Bio = request.Bio;
+        profile.SportsSpecialties = request.SportsSpecialties;
+        profile.HourlyRate = request.HourlyRate;
+        profile.AvailabilityJson = request.AvailabilityJson;
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return Ok(new { profile.Id });
     }
 }

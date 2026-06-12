@@ -12,6 +12,16 @@ public class CoachProfileRepository : EfRepository<CoachProfile>, ICoachProfileR
     {
     }
 
+    public async Task<CoachProfile?> GetByUserIdAsync(
+        string userId,
+        CancellationToken cancellationToken = default)
+    {
+        return await DbContext.CoachProfiles
+            .Include(coach => coach.User)
+            .Include(coach => coach.Reviews)
+            .FirstOrDefaultAsync(coach => coach.UserId == userId, cancellationToken);
+    }
+
     public async Task<IReadOnlyList<CoachProfile>> SearchAsync(
         string? sport,
         int? minimumRating,

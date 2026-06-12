@@ -47,6 +47,14 @@ dotnet run --project .\backend\MyFittPeak.Api
 - `MyFittPeak.Domain`: entites metier, roles, interfaces de repositories.
 - `MyFittPeak.Infrastructure`: `ApplicationDbContext`, configuration EF Core/Identity, implementations des repositories.
 
+## Endpoints API initiaux
+
+- `POST /api/auth/register` et `POST /api/auth/login`
+- `GET /api/coaches` et `PUT /api/coaches/me`
+- `GET /api/events`, `POST /api/events`, `POST /api/events/{eventId}/participants`
+- `GET /api/bookings/me` et `POST /api/bookings`
+- `GET /api/reviews/coach/{coachId}` et `POST /api/reviews`
+
 ```powershell
 cd frontend
 npm install

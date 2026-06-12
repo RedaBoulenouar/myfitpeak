@@ -36,6 +36,9 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
         services.AddScoped<ICoachProfileRepository, CoachProfileRepository>();
+        services.AddScoped<IEventRepository, EventRepository>();
+        services.AddScoped<IBookingRepository, BookingRepository>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
