@@ -172,6 +172,14 @@ button {
   font-weight: 700;
 }
 
+.link-button {
+  background: transparent;
+  border: 0;
+  color: #18202f;
+  font-weight: 500;
+  padding: 0;
+}
+
 .grid {
   display: grid;
   gap: 16px;
