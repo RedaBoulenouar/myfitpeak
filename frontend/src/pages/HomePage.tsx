@@ -14,7 +14,7 @@ export function HomePage() {
           <p className="eyebrow">Plateforme coachs & clients</p>
           <h1>Atteignez votre meilleur niveau avec le bon accompagnement.</h1>
           <p>
-            My Fitt Peak connecte les clients avec des coachs sportifs, des cours
+            myfitpeak connecte les clients avec des coachs sportifs, des cours
             collectifs, des programmes personnalises et un suivi clair.
           </p>
           <div className="hero-actions">
@@ -31,7 +31,7 @@ export function HomePage() {
 
       <section className="section">
         <div className="section-heading">
-          <p className="eyebrow">Pourquoi My Fitt Peak</p>
+          <p className="eyebrow">Pourquoi myfitpeak</p>
           <h2>Un parcours simple avant, pendant et apres la seance.</h2>
         </div>
         <div className="grid">

@@ -15,7 +15,7 @@ export function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <Link to="/" className="brand">My Fitt Peak</Link>
+        <Link to="/" className="brand">myfitpeak</Link>
         <nav>
           <Link to="/">Accueil</Link>
           <Link to="/about">A propos</Link>

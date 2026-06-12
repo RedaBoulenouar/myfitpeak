@@ -58,7 +58,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "My Fitt Peak API",
+        Title = "myfitpeak API",
         Version = "v1"
     });
 

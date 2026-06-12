@@ -3,7 +3,7 @@ export function ContactPage() {
     <main className="page contact-layout">
       <section>
         <p className="eyebrow">Nous contacter</p>
-        <h1>Une question sur My Fitt Peak ?</h1>
+        <h1>Une question sur myfitpeak ?</h1>
         <p>
           Envoyez votre message a l'equipe pour parler partenariat coach,
           support client ou lancement de la plateforme.

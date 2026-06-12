@@ -1,4 +1,4 @@
-# My Fitt Peak
+# myfitpeak
 
 Plateforme web de mise en relation entre coachs sportifs et clients.
 

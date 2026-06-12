@@ -2,7 +2,7 @@ export function AboutPage() {
   return (
     <main className="page editorial">
       <p className="eyebrow">A propos</p>
-      <h1>My Fitt Peak rend le coaching sportif plus accessible.</h1>
+      <h1>myfitpeak rend le coaching sportif plus accessible.</h1>
       <p>
         La plateforme aide les clients a trouver un coach adapte a leur niveau,
         leur discipline et leur budget. Les coachs peuvent presenter leur profil,
