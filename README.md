@@ -6,7 +6,7 @@ Plateforme web de mise en relation entre coachs sportifs et clients.
 
 - Frontend: React, TypeScript, Vite
 - Backend: ASP.NET Core Web API, .NET 8, C#
-- Database: SQL Server avec Entity Framework Core
+- Database: MySQL avec Entity Framework Core
 - Auth: ASP.NET Core Identity + JWT + roles `Client` et `Coach`
 
 ## Structure
@@ -37,7 +37,7 @@ frontend/
 
 ```powershell
 dotnet restore .\backend\MyFittPeak.Api\MyFittPeak.Api.csproj
-dotnet ef database update --project .\backend\MyFittPeak.Api
+dotnet ef database update --project .\backend\MyFittPeak.Infrastructure --startup-project .\backend\MyFittPeak.Api
 dotnet run --project .\backend\MyFittPeak.Api
 ```
 
@@ -45,7 +45,9 @@ dotnet run --project .\backend\MyFittPeak.Api
 
 - `MyFittPeak.Api`: controllers, contrats HTTP, JWT, CORS, Swagger.
 - `MyFittPeak.Domain`: entites metier, roles, interfaces de repositories.
-- `MyFittPeak.Infrastructure`: `ApplicationDbContext`, configuration EF Core/Identity, implementations des repositories.
+- `MyFittPeak.Infrastructure`: `ApplicationDbContext`, configuration EF Core/Identity avec MySQL, implementations des repositories.
+
+La chaine de connexion MySQL se trouve dans `backend/MyFittPeak.Api/appsettings.json`.
 
 ## Endpoints API initiaux
 

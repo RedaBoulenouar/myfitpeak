@@ -82,7 +82,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .HasPrecision(10, 2);
 
         builder.Entity<Review>()
-            .ToTable(table => table.HasCheckConstraint("CK_Reviews_Rating", "[Rating] BETWEEN 1 AND 5"));
+            .ToTable(table => table.HasCheckConstraint("CK_Reviews_Rating", "Rating BETWEEN 1 AND 5"));
     }
 }
 
